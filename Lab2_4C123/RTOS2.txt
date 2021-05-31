@@ -1,0 +1,37 @@
+1. 
+In OS_AddThreads first the TCB circular list is initialized then a stack per thread is also initialized.
+OS_AddThreadsd3 runs OS_AddThreads for debugging.
+tcbs are stack that stored the pointer for threads, with this condition we can add extra ones in there. 
+if we already have thread 3 active, then 3rd one was to point to new one (4th) and 4th will poin back to first one.
+   otherways, set 3rd one to point at first thread.
+
+2. 
+Main_Mail, Main_Mail_Input, Measurement are sahred between threads so we need to declare it globally.  
+These global variables are initialized to implement Mail, MailData and Rate, where they are needed. 
+Initial value for global variables is 0 as default.
+
+uint32_t accepts almost twice of the range of int32.
+uint32_t is used to represent 32-bit unsigned integers. uint64_t is used to represent 64-bit unsigned integers.
+//exact-width signed integer types
+int32_t Main_Mail;  // Mail, to include data field, points to the semaphore of the same type
+
+uint32_t Main_Mail_Input = 0; // MailData, maildata stored the data sent, it is shared between threads, it is shared between sender and receiver function. 
+
+uint64_t Measurement  = 0 // Rate, rate is always positive so its unsigned, stores program time, needs maximum memorey 
+
+
+3.
+OS_MailBox_Recv signals OS (semaphore – 1) and returns the data read from the mail.
+
+The variable counting_semaphore is STATUS, I called StartCritical so it retirns a status info, " ok i am starting the execution of critical code block"  
+
+the execution of a critical code block has started so that I am calling StartCritical to declare it to the system.
+similarly I point out the end of the block by calling EndCritical in the same way. 
+the main purpose of doing this is to avoid any interrupt on the execution of the code block between them. 
+
+
+
+
+
+
+
