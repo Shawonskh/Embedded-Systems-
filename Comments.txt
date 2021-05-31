@@ -1,0 +1,28 @@
+
+example: 4000 digital data = 3,2v
+
+// converts Digital Data to Voltage. 
+{
+	long voltage=0;
+//your code should be here
+//converts Digital Data to Voltage. 
+	sample = (unsigned long)(sample*resolution);
+	voltage = sample + MIN_VOLT;
+	return voltage;
+}
+
+
+With the LAB defined circuit connection "The higher the light intensity on the LDR, the dimmer the LED" works with the current fixed and commented code. 
+
+"adcCount" implementation in the ISR is Done. 
+{	
+	if(adcCount==0) { // ADC sampling counter has recently reached 100
+		Flag = TRUE;          // ADCdata is ready
+		ADCdata = ADC0_In();  // Call ADC function
+	}
+
+if(adcCount==100) { // The limit of 100 times PWM signaling has been reached
+					adcCount=0; // Reset adcCount
+
+Another way, I have implemented the circuit with the picture (light increases, Vout decreases Circuit) i have added. and now The higher the light intensity on the LDR, the dimmer the LED. 
+
